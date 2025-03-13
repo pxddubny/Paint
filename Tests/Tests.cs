@@ -45,9 +45,8 @@ namespace Tests
             char fill = '0';
 
             var circle = new Circle(x, y, radius, filled, fill);
-            char[,] canvas = new char[Height, Width]; // Холст 40x40
+            char[,] canvas = new char[Height, Width];
 
-            // Инициализируем холст пробелами
             for (int i = 0; i < canvas.GetLength(0); i++)
             {
                 for (int j = 0; j < canvas.GetLength(1); j++)
@@ -56,30 +55,25 @@ namespace Tests
                 }
             }
 
-            // Act
             circle.Draw(canvas);
 
-            // Assert
-            double aspectRatio = 2.0; // Учитываем аспектное соотношение
-            int adjustedY = y / 2; // Корректируем Y
+            double aspectRatio = 2.0; 
+            int adjustedY = y / 2; 
 
-            // Проверяем, что все пиксели внутри круга заполнены символом '0'
             for (int i = 0; i < canvas.GetLength(0); i++)
             {
                 for (int j = 0; j < canvas.GetLength(1); j++)
                 {
                     int dx = j - x;
-                    int dy = (int)((i - adjustedY) * aspectRatio); // Учитываем аспектное соотношение
+                    int dy = (int)((i - adjustedY) * aspectRatio); 
                     int distanceSquared = dx * dx + dy * dy;
 
                     if (distanceSquared <= radius * radius)
                     {
-                        // Пиксель внутри круга
                         Assert.AreEqual(fill, canvas[i, j], $"Pixel at ({i}, {j}) should be '{fill}'.");
                     }
                     else
                     {
-                        // Пиксель за пределами круга
                         Assert.AreEqual(' ', canvas[i, j], $"Pixel at ({i}, {j}) should be ' '.");
                     }
                 }
@@ -88,18 +82,16 @@ namespace Tests
         [TestMethod]
         public void TestDrawFilledTriangle()
         {
-            // Arrange
-            int x = 20; // Координата X вершины треугольника
-            int y = 4;  // Координата Y вершины треугольника
-            int height = 10; // Высота треугольника
-            int baseLength = 12; // Основание треугольника
-            bool filled = true; // Заливка включена
-            char fill = 'X'; // Символ заливки
+            int x = 20; 
+            int y = 4; 
+            int height = 10; 
+            int baseLength = 12; 
+            bool filled = true;
+            char fill = 'X'; 
 
             var triangle = new Triangle(x, y, height, baseLength, filled, fill);
-            char[,] canvas = new char[Height, Width]; // Холст 30x180
+            char[,] canvas = new char[Height, Width]; 
 
-            // Инициализируем холст пробелами
             for (int i = 0; i < canvas.GetLength(0); i++)
             {
                 for (int j = 0; j < canvas.GetLength(1); j++)
@@ -107,17 +99,12 @@ namespace Tests
                     canvas[i, j] = ' ';
                 }
             }
-
-            // Act
             triangle.Draw(canvas);
 
-            // Assert
-            // Проверяем, что все пиксели внутри треугольника заполнены символом 'X'
             for (int i = 0; i < canvas.GetLength(0); i++)
             {
                 for (int j = 0; j < canvas.GetLength(1); j++)
                 {
-                    // Вычисляем скорректированные координаты для проверки
                     int adjustedY = y / 2;
                     int x1 = x;
                     int y1 = adjustedY;
@@ -128,7 +115,6 @@ namespace Tests
 
                     if (Triangle.IsPointInTriangle(j, i, x1, y1, x2, y2, x3, y3))
                     {
-                        // Пиксель внутри треугольника
                         Assert.AreEqual(fill, canvas[i, j], $"Pixel at ({i}, {j}) should be '{fill}'.");
                     }
                 }

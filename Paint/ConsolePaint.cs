@@ -44,8 +44,8 @@ namespace Paint
             Console.WriteLine("\nConsole Paint - Choose an action:");
             Console.WriteLine("1. Draw Rectangle");
             Console.WriteLine("2. Draw Circle");
-            Console.WriteLine("3. Move Last Shape");
-            Console.WriteLine("4. Draw triangle");
+            Console.WriteLine("3.  Draw triangle");
+            Console.WriteLine("4. Move last shape");
             Console.WriteLine("5. Undo");
             Console.WriteLine("6. Redo");
             Console.WriteLine("7. Save Shapes to JSON");
@@ -63,10 +63,10 @@ namespace Paint
                     DrawCircle();
                     break;
                 case "3":
-                    MoveLastShape();
+                    DrawTriangle();
                     break;
                 case "4":
-                    DrawTriangle();
+                    MoveLastShape();
                     break;
                 case "5":
                     Undo();

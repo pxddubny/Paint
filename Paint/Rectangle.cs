@@ -45,7 +45,6 @@ namespace Paint
         }*/
         public void Draw(char[,] canvas)
         {
-            // Применяем деление на 2 только для отрисовки
             int adjustedY = Y / 2;
             int adjustedHeight = Height / 2;
 
@@ -56,11 +55,9 @@ namespace Paint
                     int canvasY = adjustedY + i;
                     int canvasX = X + j;
 
-                    // Проверяем, что координаты находятся в пределах холста
                     if (canvasY >= 0 && canvasY < canvas.GetLength(0) &&
                         canvasX >= 0 && canvasX < canvas.GetLength(1))
                     {
-                        // Если фигура залита или это граница, заполняем символом Fill
                         if (Filled || i == 0 || i == adjustedHeight - 1 || j == 0 || j == Width - 1)
                         {
                             canvas[canvasY, canvasX] = Fill;

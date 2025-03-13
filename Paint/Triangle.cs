@@ -106,7 +106,6 @@ namespace Paint
             int x2 = X + Base;
             int y2 = (Y / 2 + Height / 2);
 
-            // Ограничиваем координаты границами холста
             x1 = Math.Clamp(x1, 0, canvas.GetLength(1) - 1);
             y1 = Math.Clamp(y1, 0, canvas.GetLength(0) - 1);
             x2 = Math.Clamp(x2, 0, canvas.GetLength(1) - 1);
@@ -129,7 +128,6 @@ namespace Paint
             int minY = Math.Min(y1, Math.Min(y2, y3));
             int maxY = Math.Max(y1, Math.Max(y2, y3));
 
-            // Ограничиваем координаты границами холста
             minX = Math.Clamp(minX, 0, canvas.GetLength(1) - 1);
             maxX = Math.Clamp(maxX, 0, canvas.GetLength(1) - 1);
             minY = Math.Clamp(minY, 0, canvas.GetLength(0) - 1);
